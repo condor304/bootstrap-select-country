@@ -18,6 +18,8 @@ let countrypicker = function(opts) {
 
 		var flag = $select.data('flag');
 
+		var placeHolder = $select.data('placeholder');
+
 		var countries = allCountries;
 		
 		// filter countries of an option "data-countries" exist"
@@ -28,6 +30,10 @@ let countrypicker = function(opts) {
 		}
 
 		var options = [];
+
+		if(placeHolder){
+			options.push('<option value="" >'+placeHolder+'</option>');
+		}
 		if (flag) {
 				/* create option for each existing country */
 				$.each(countries, function (index, country) {
@@ -42,7 +48,7 @@ let countrypicker = function(opts) {
 			//for each build list without flag
 			$.each(countries, function (index, country) {
 				options.push(`<option
-					data-countrycode="${country.code}
+					data-countrycode="${country.code}"
 					data-tokens="${country.code} ${country.name}"
 					value="${country.code}">${country.name}</option>`);
 			});
